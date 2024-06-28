@@ -15,3 +15,21 @@ def agregar_empleado(usuario):
         messagebox.showinfo("USUARIOS","USUARIO CREADO")
     except sqlite3.Error as e:
         messagebox.showerror("Error","ERROR EN CREAR AL USUARIO", e)
+        
+        
+def login(usuario, password):
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        
+        sql = "SELECT * FROM usuarios WHERE usuario=? AND password=?"
+        cursor.execute(sql,(usuario, password))
+        resultado = cursor.fetchone()
+        cerrar_conexion(conexion)
+
+        return resultado is not None
+    
+    except sqlite3.Error as e: 
+        print("Error en iniciar sesion: " + e)
+    
+    return False

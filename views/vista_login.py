@@ -63,32 +63,26 @@ class Vista_Login:
         self.frame_transparente.create_rounded_rectangle(200,100, 500, 400, radius=20, fill="#2C2C2C", outline="")
         
         # Título "Inicio de Sesión"
-        titulo = tk.Label(self.frame_transparente, text="Inicio de Sesión", font=("Helvetica", 16), bg="#2C2C2C", fg="#E0E0E0")
-        self.frame_transparente.create_window(350, 130, window=titulo, anchor="center")
+        self.titulo = tk.Label(self.frame_transparente, text="Inicio de Sesión", font=("Helvetica", 16), bg="#2C2C2C", fg="#E0E0E0")
+        self.frame_transparente.create_window(350, 130, window=self.titulo, anchor="center")
         
         # Etiqueta de usuario
-        lb_usuario = tk.Label(self.frame_transparente, text="Usuario: ", font=("Helvetica", 14),bg="#2C2C2C", fg="#E0E0E0")
-        self.frame_transparente.create_window(350, 180, window=lb_usuario, anchor="center")
+        self.lb_usuario = tk.Label(self.frame_transparente, text="Usuario: ", font=("Helvetica", 14),bg="#2C2C2C", fg="#E0E0E0")
+        self.frame_transparente.create_window(350, 180, window=self.lb_usuario, anchor="center")
         
         # Entrada de usuario
-        entrada_usuario = tk.Entry(self.frame_transparente, bg="#FFFFFF",font=("Helvetica", 14), fg="#000000")
-        self.frame_transparente.create_window(350, 220, window=entrada_usuario, anchor="center")
+        self.entrada_usuario = tk.Entry(self.frame_transparente, bg="#FFFFFF",font=("Helvetica", 14), fg="#000000")
+        self.frame_transparente.create_window(350, 220, window=self.entrada_usuario, anchor="center")
         
         # Etiqueta de contraseña
-        lb_password = tk.Label(self.frame_transparente, text="Contraseña:", font=("Helvetica", 14),bg="#2C2C2C", fg="#E0E0E0")
-        self.frame_transparente.create_window(350, 260, window=lb_password, anchor="center")
+        self.lb_password = tk.Label(self.frame_transparente, text="Contraseña:", font=("Helvetica", 14),bg="#2C2C2C", fg="#E0E0E0")
+        self.frame_transparente.create_window(350, 260, window=self.lb_password, anchor="center")
         
         # Entrada de contraseña
-        entrada_password = tk.Entry(self.frame_transparente, show="*", font=("Helvetica", 14),bg="#FFFFFF", fg="#000000")
-        self.frame_transparente.create_window(350, 300, window=entrada_password, anchor="center")
+        self.entrada_password = tk.Entry(self.frame_transparente, show="*", font=("Helvetica", 14),bg="#FFFFFF", fg="#000000")
+        self.frame_transparente.create_window(350, 300, window=self.entrada_password, anchor="center")
         
         # Botón de ingresar
-        btn_ingresar = tk.Button(self.frame_transparente, text="Ingresar", font=("Helvetica", 14),bg="#4A4A4A", fg="#FFFFFF", activebackground="#6A6A6A", activeforeground="#FFFFFF")
-        self.frame_transparente.create_window(350, 360, window=btn_ingresar, anchor="center")
+        self.btn_ingresar = tk.Button(self.frame_transparente, text="Ingresar", font=("Helvetica", 14),bg="#4A4A4A", fg="#FFFFFF", activebackground="#6A6A6A", activeforeground="#FFFFFF")
+        self.frame_transparente.create_window(350, 360, window=self.btn_ingresar, anchor="center")
 
-def main():
-    ventana = tk.Tk()
-    ventana_p = Vista_Login(ventana)
-    ventana.mainloop()
-
-main()
