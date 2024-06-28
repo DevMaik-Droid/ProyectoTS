@@ -19,7 +19,7 @@ class Vista_Login:
         entrada_password = tk.Entry(self.ventana)
         entrada_password.pack()
         btn_ingresar = tk.Button(self.ventana, text="Ingresar")
-        btn_ingresar.config(bg="#00ff00")
+        btn_ingresar.config(bg="#00ff00",fg="")
         btn_ingresar.pack()
 
 def main():
