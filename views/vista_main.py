@@ -115,11 +115,3 @@ class VentanaPrincipal:
 
     def salir(self):
         self.root.quit()
-
-def main():
-    root = tk.Tk()
-    ventana_principal = VentanaPrincipal(root)
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
