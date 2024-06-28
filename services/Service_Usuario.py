@@ -4,7 +4,7 @@ import sqlite3
 
 
 
-def agregar_usuario(usuario):
+def agregar_empleado(usuario):
     try:
         conexion = conectar()
         cursor = conexion.cursor()
@@ -21,10 +21,10 @@ def login(usuario, password):
     try:
         conexion = conectar()
         cursor = conexion.cursor()
-        
         sql = "SELECT * FROM usuarios WHERE usuario=? AND password=?"
         cursor.execute(sql,(usuario, password))
         resultado = cursor.fetchone()
+        
         cerrar_conexion(conexion)
 
         return resultado is not None
