@@ -1,4 +1,4 @@
-from services.Service_Usuario import agregar_empleado, login
+from services.Service_Usuario import agregar_usuario, login
 from models.Usuario import Usuario
 from views.vista_login import Vista_Login
 from tkinter import messagebox
@@ -21,7 +21,7 @@ class usuario_controller(Vista_Login):
         user.set_password("dev1")
         
         print(user.get_nombre())
-        agregar_empleado(user)
+        agregar_usuario(user)
         
     def iniciar_sesion(self):
         usuario = self.entrada_usuario.get()

@@ -4,7 +4,7 @@ import sqlite3
 
 
 
-def agregar_empleado(usuario):
+def agregar_usuario(usuario):
     try:
         conexion = conectar()
         cursor = conexion.cursor()
