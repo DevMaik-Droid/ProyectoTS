@@ -3,6 +3,9 @@ from tkinter import messagebox, Toplevel
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+from controllers.producto_controller import Producto_Controller
+from views.vista_registrar_libro import V_RegistrarLibro
+
 
 class VentanaPrincipal:
     def __init__(self, root):
@@ -30,7 +33,7 @@ class VentanaPrincipal:
         empleados_menu = tk.Menu(menu, tearoff=0)
         empleados_menu.add_command(label="Registrar Usuario", command=self.abrir_subventana_agregar_empleado)
         empleados_menu.add_command(label="Registrar Empleado", command=self.mostrar_ventana_empleados)
-        empleados_menu.add_command(label="Registrar Libro", command=self.abrir_subventana_agregar_empleado)
+        empleados_menu.add_command(label="Registrar Libro", command=self.ventana_registrar_libro)
         menu.add_cascade(label="Registrar", menu=empleados_menu)
 
         # Menú Gestionar
@@ -104,9 +107,15 @@ class VentanaPrincipal:
     def abrir_subventana_agregar_empleado(self):
         pass
 
+    def ventana_registrar_libro(self):
+        ventana_libros = Toplevel(self.root)
+        Producto_Controller(ventana_libros)
+        
     def mostrar_ventana_empleados(self):
         ventana_empleados = Toplevel(self.root)
-        pass
+        
+        
+        
 
     def mostrar_acerca_de(self):
         messagebox.showinfo("Acerca de HR Software", "HR Software - Control de Recursos Humanos\nVersión 1.0\nDesarrollado por HR Soft\nhttps://www.hrsoft.com")

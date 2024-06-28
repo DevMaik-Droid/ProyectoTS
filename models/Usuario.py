@@ -1,16 +1,9 @@
 
 class Usuario:
     
-    def __init__(self, nombre, edad, ci, usuario, password):
-        self.nombre = nombre
-        self.edad = edad
-        self.ci = ci
-        self.usuario = usuario
-        self.password = password
-    
     def __init__(self):
         pass
-        
+    
     def get_nombre(self):
         return self.nombre
     
