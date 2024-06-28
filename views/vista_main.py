@@ -3,6 +3,7 @@ from tkinter import messagebox, Toplevel
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+
 class VentanaPrincipal:
     def __init__(self, root):
         self.root = root
