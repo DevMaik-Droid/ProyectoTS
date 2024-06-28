@@ -4,8 +4,9 @@ from tkinter import ttk
 from PIL import Image, ImageTk
 
 from controllers.producto_controller import Producto_Controller
+from controllers.ventas_controller import Ventas_Controller
 from views.vista_registrar_libro import V_RegistrarLibro
-
+from services.Service_Producto import listar_productos
 
 class VentanaPrincipal:
     def __init__(self, root):
@@ -53,7 +54,7 @@ class VentanaPrincipal:
 
         # Menú Ventas
         ventas_menu = tk.Menu(menu, tearoff=0)
-        ventas_menu.add_command(label="Registrar Venta", command=self.generar_reporte_empleados)
+        ventas_menu.add_command(label="Registrar Venta", command=self.abrir_ventana_ventas)
         menu.add_cascade(label="Ventas", menu=ventas_menu)
 
         # Menú Ayuda
@@ -72,6 +73,8 @@ class VentanaPrincipal:
 
         self.crear_paneles_informacion(panel_principal)
         self.crear_tabla_ventas(panel_principal)
+        
+        
 
     def crear_paneles_informacion(self, parent):
         panel_informacion = tk.Frame(parent, bg='lightgray')
@@ -91,22 +94,31 @@ class VentanaPrincipal:
         frame_tabla = tk.Frame(parent)
         frame_tabla.pack(fill=tk.BOTH, expand=True, pady=10)
 
-        columnas = ("ID Venta", "Usuario", "Libro", "Fecha", "Total")
+        columnas = ("ID Libro","Libro", "Stock", "Precio")
         self.tabla_ventas = ttk.Treeview(frame_tabla, columns=columnas, show='headings')
-        self.tabla_ventas.heading("ID Venta", text="ID Venta")
-        self.tabla_ventas.heading("Usuario", text="Usuario")
+        self.tabla_ventas.column("ID Libro",width=20)
+        self.tabla_ventas.column("Libro",width=200)
+        self.tabla_ventas.column("Stock",width=20)
+        self.tabla_ventas.column("Precio",width=20)
+        
+        self.tabla_ventas.heading("ID Libro", text="ID Libro")
         self.tabla_ventas.heading("Libro", text="Libro")
-        self.tabla_ventas.heading("Fecha", text="Fecha")
-        self.tabla_ventas.heading("Total", text="Total")
+        self.tabla_ventas.heading("Stock", text="Stock")
+        self.tabla_ventas.heading("Precio", text="Precio")
         self.tabla_ventas.pack(fill=tk.BOTH, expand=True)
 
-        # Insertar datos de ejemplo
-        for i in range(10):
-            self.tabla_ventas.insert("", "end", values=(i+1, f"Usuario {i+1}", f"Libro {i+1}", "2024-06-28", f"${i*10 + 20}"))
+        list_productos = listar_productos()
+        
+        for producto in list_productos:
+            self.tabla_ventas.insert("", tk.END, values=producto)
 
     def abrir_subventana_agregar_empleado(self):
         pass
 
+    def abrir_ventana_ventas(self):
+        v_ventas = Toplevel(self.root)
+        Ventas_Controller(v_ventas)
+        
     def ventana_registrar_libro(self):
         ventana_libros = Toplevel(self.root)
         Producto_Controller(ventana_libros)
