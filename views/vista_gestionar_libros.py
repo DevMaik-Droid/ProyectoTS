@@ -8,33 +8,37 @@ class V_GestionLibro:
     def __init__(self, ventana):
         self.ventana = ventana
         self.ventana.title("Registrar Libro")
-        self.ventana.geometry("400x300")
+        self.ventana.geometry("350x450")
         self.ventana.configure(bg="#FFECB3")  # Fondo naranja claro
         self.init_components()
         
     def init_components(self):
+        # Título centrado
+        self.lb_titulo = tk.Label(self.ventana, text="Gestion de Libros", fg="#225e68", bg="#e6e6e6", font=("Arial", 20, "bold"))
+        self.lb_titulo.grid(row=0, column=0, pady=(20, 10), columnspan=2,sticky="nesw")
+
         # Etiquetas y widgets de entrada
         self.lb_nombre = tk.Label(self.ventana, text="Nombre: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
-        self.lb_nombre.grid(row=1, column=0)
-        self.entrada_nombre = tk.Entry(self.ventana)
-        self.entrada_nombre.grid(row=2, column=0)
+        self.lb_nombre.grid(row=1, column=0,padx=(50,20))
+        self.entrada_nombre = ttk.Entry(self.ventana)
+        self.entrada_nombre.grid(row=2, column=0,padx=(50,20))
         
         self.lb_stock = tk.Label(self.ventana, text="Stock: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
         self.lb_stock.grid(row=1, column=1)
-        self.entrada_stock = tk.Entry(self.ventana)
+        self.entrada_stock = ttk.Entry(self.ventana)
         self.entrada_stock.grid(row=2, column=1)
     
         self.lb_precio = tk.Label(self.ventana, text="Precio: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
-        self.lb_precio.grid(row=3, column=0)
-        self.entrada_precio = tk.Entry(self.ventana)
-        self.entrada_precio.grid(row=4, column=0)
+        self.lb_precio.grid(row=3, column=0,padx=(50,20))
+        self.entrada_precio = ttk.Entry(self.ventana)
+        self.entrada_precio.grid(row=4, column=0,padx=(50,20))
         
         # Botón
         self.btn_modificar = tk.Button(self.ventana, text="Modificar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
-        self.btn_modificar.grid(row=5, column=0)
-        
+        self.btn_modificar.grid(row=5, column=0,padx=(70,0),pady=(10,10))
+         
         self.btn_eliminar = tk.Button(self.ventana, text="Eliminar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
-        self.btn_eliminar.grid(row=5, column=1)
+        self.btn_eliminar.grid(row=5, column=1,pady=(10,10))
         
         self.crear_tabla_productos()
         
@@ -42,16 +46,16 @@ class V_GestionLibro:
     def crear_tabla_productos(self):
         columnas = ("ID Libro","Libro", "Stock", "Precio")
         self.tabla_productos = ttk.Treeview(self.ventana, columns=columnas, show='headings')
-        self.tabla_productos.column("ID Libro",width=20)
-        self.tabla_productos.column("Libro",width=200)
-        self.tabla_productos.column("Stock",width=20)
-        self.tabla_productos.column("Precio",width=20)
+        self.tabla_productos.column("ID Libro",width=50)
+        self.tabla_productos.column("Libro",width=175)
+        self.tabla_productos.column("Stock",width=50)
+        self.tabla_productos.column("Precio",width=50)
         
         self.tabla_productos.heading("ID Libro", text="ID Libro")
         self.tabla_productos.heading("Libro", text="Libro")
         self.tabla_productos.heading("Stock", text="Stock")
         self.tabla_productos.heading("Precio", text="Precio")
-        self.tabla_productos.grid(row=6, column=0, columnspan=2)
+        self.tabla_productos.grid(row=6, column=0, columnspan=2,padx=(10,0))
 
         list_productos = listar_productos()
         
@@ -67,8 +71,6 @@ class V_GestionLibro:
         item_values = self.tabla_productos.item(item, "values")
         
         self.id_libro = item_values[0]
-        print("id_libro: ", self.id_libro)
-
         self.entrada_nombre.delete(0, tk.END)
         self.entrada_nombre.insert(0, item_values[1])
         
