@@ -1,16 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 
+from services.Service_Producto import listar_productos
+
 # Supongamos que tenemos una función para listar productos
 # Aquí se define una función de ejemplo
-def listar_productos():
-    return [
-        (1, "Libro 1", 10, 50.0),
-        (2, "Libro 2", 15, 45.0),
-        (3, "Libro 3", 20, 55.0),
-        (4, "Libro 4", 8, 60.0),
-        (5, "Libro 5", 12, 40.0)
-    ]
 
 class V_Ventas:
     
@@ -86,6 +80,7 @@ class V_Ventas:
         item = self.tabla_productos.identify('item', event.x, event.y)
         
         item_values = self.tabla_productos.item(item, "values")
+        self.id_producto = item_values[0]
         
         self.entrada_nombre_producto.delete(0, tk.END)
         self.entrada_nombre_producto.insert(0, item_values[1])
@@ -93,10 +88,11 @@ class V_Ventas:
         self.entrada_precio.delete(0, tk.END)
         self.entrada_precio.insert(0, item_values[3])
         
+        """
         # Supongamos que calculamos el total como precio * cantidad
         if self.entrada_cantidad.get():
             total = float(self.entrada_precio.get()) * float(self.entrada_cantidad.get())
             self.entrada_total.delete(0, tk.END)
             self.entrada_total.insert(0, total)
         else:
-            self.entrada_total.delete(0, tk.END)
+            self.entrada_total.delete(0, tk.END)"""

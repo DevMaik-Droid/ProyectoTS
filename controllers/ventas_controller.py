@@ -27,7 +27,7 @@ class Ventas_Controller(V_Ventas):
             
         if id_cliente > 0: 
             venta = Venta()
-            venta.set_id_producto(int(self.id))
+            venta.set_id_producto(int(self.id_producto))
             venta.set_id_cliente(int(id_cliente))
             venta.set_id_usuario(int(self.id_usuario))
             venta.set_precio_real(float(self.entrada_total.get()))
