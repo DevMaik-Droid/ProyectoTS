@@ -9,5 +9,3 @@ def main():
     ventana.mainloop()
     
 main()
-
-
