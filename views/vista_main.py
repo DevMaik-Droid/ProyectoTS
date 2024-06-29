@@ -33,7 +33,6 @@ class VentanaPrincipal:
         # Menú Registrar 
         empleados_menu = tk.Menu(menu, tearoff=0)
         empleados_menu.add_command(label="Registrar Usuario", command=self.abrir_subventana_agregar_usuario)
-        empleados_menu.add_command(label="Registrar Empleado", command=self.mostrar_ventana_empleados)
         empleados_menu.add_command(label="Registrar Libro", command=self.ventana_registrar_libro)
         menu.add_cascade(label="Registrar", menu=empleados_menu)
 
@@ -46,7 +45,6 @@ class VentanaPrincipal:
         # Menú Reportes
         reportes_menu = tk.Menu(menu, tearoff=0)
         reportes_menu.add_command(label="Generar Reporte de Usuarios", command=self.generar_reporte_empleados)
-        reportes_menu.add_command(label="Generar Reporte de Empleados", command=self.generar_reporte_empleados)
         reportes_menu.add_command(label="Generar Reporte de Libros", command=self.generar_reporte_empleados)
         reportes_menu.add_command(label="Generar Reporte de Ventas", command=self.generar_reporte_empleados)
         menu.add_cascade(label="Reportes", menu=reportes_menu)
