@@ -27,3 +27,16 @@ def listar_clientes():
         return productos
     except sqlite3.Error as e:
         messagebox.showerror("Error","ERROR EN LISTAR CLIENTES", e)
+        
+
+def listar_ventas():
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "SELECT p.nombre, u.nombre, c.nombre, v.precio_real FROM ventas v inner join productos p on p.idp = v.idv inner join usuarios u on u.id = v.id_usuario inner join clientes c on c.idc = v.id_cliente"
+        cursor.execute(sql)
+        ventas = cursor.fetchall()
+        cerrar_conexion(conexion)
+        return ventas
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN LISTAR VENTAS", e)
