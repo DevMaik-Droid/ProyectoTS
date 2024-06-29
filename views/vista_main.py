@@ -8,6 +8,7 @@ from controllers.producto_controller import Producto_Controller
 from controllers.ventas_controller import Ventas_Controller
 from controllers.user_controller import Usuario_Controller
 from services.Service_Producto import listar_productos
+from views.vista_gestionar_libros import V_GestionLibro
 
 class VentanaPrincipal:
     def __init__(self, root, id_usuario):
@@ -40,7 +41,7 @@ class VentanaPrincipal:
         # Menú Gestionar
         empleados_menu = tk.Menu(menu, tearoff=0)
         empleados_menu.add_command(label="Gestionar Usuario", command=self.ventana_gestion_usuario)
-        empleados_menu.add_command(label="Gestionar Libro")
+        empleados_menu.add_command(label="Gestionar Libro", command=self.abrir_gestion_libros)
         menu.add_cascade(label="Gestionar", menu=empleados_menu)
 
         # Menú Reportes
@@ -115,6 +116,10 @@ class VentanaPrincipal:
         Usuario_Controller(ventana_usuario)
         
 
+    def abrir_gestion_libros(self):
+        ventana_gestion_libros = Toplevel(self.root)
+        V_GestionLibro(ventana_gestion_libros)
+        
     def abrir_ventana_ventas(self):
         v_ventas = Toplevel(self.root)
         Ventas_Controller(v_ventas, self.id_usuario)
