@@ -11,48 +11,55 @@ class V_Ventas:
     def __init__(self, ventana):
         self.ventana = ventana
         self.ventana.title("Registro de Venta")
-        self.ventana.geometry("728x450")  # Se ha aumentado el ancho de la ventana
+        self.ventana.geometry("750x500")  # Se ha aumentado el ancho de la ventana
         self.ventana.configure(bg="#E5E8E8")  # Fondo gris claro
         self.init_components()
 
     def init_components(self):
         self.lb_titulo = tk.Label(self.ventana, text="Registro de Venta", bg="#E5E8E8", fg="#2C3E50", font=("Arial", 20, "bold"))
-        self.lb_titulo.grid(row=0, column=1, columnspan=6, pady=(20, 10))
+        self.lb_titulo.grid(row=0, column=1, pady=(20, 10))
 
         self.lb_nombre_cliente = tk.Label(self.ventana, text="Cliente:", bg="#E5E8E8", fg="#2C3E50")
-        self.lb_nombre_cliente.grid(row=1, column=1,padx=10)
+        self.lb_nombre_cliente.grid(row=1, column=0,padx=(10,0))
         self.entrada_nombre_cliente = tk.Entry(self.ventana)
-        self.entrada_nombre_cliente.grid(row=1, column=2, padx=10)
+        self.entrada_nombre_cliente.grid(row=2, column=0, padx=(10,0))
         
         self.lb_ci_cliente = tk.Label(self.ventana, text="Cédula:", bg="#E5E8E8", fg="#2C3E50")
-        self.lb_ci_cliente.grid(row=1, column=3, padx=10)
+        self.lb_ci_cliente.grid(row=1, column=1, padx=10)
         self.entrada_ci_cliente = tk.Entry(self.ventana)        
-        self.entrada_ci_cliente.grid(row=1, column=4, padx=10)
+        self.entrada_ci_cliente.grid(row=2, column=1, padx=10)
         
         self.lb_nombre_producto = tk.Label(self.ventana, text="Producto:", bg="#E5E8E8", fg="#2C3E50")
-        self.lb_nombre_producto.grid(row=2, column=1, padx=10, pady=(10,0))
+        self.lb_nombre_producto.grid(row=3, column=0, padx=(10,0), pady=(10,0))
         self.entrada_nombre_producto = tk.Entry(self.ventana)
-        self.entrada_nombre_producto.grid(row=2, column=2, padx=10, pady=(10,0))
+        self.entrada_nombre_producto.grid(row=4, column=0, padx=(10,0), pady=(10,0))
         
         self.lb_precio = tk.Label(self.ventana, text="Precio:", bg="#E5E8E8", fg="#2C3E50")
-        self.lb_precio.grid(row=2, column=3, padx=10, pady=(10,0))
+        self.lb_precio.grid(row=3, column=1, padx=10, pady=(10,0))
         self.entrada_precio = tk.Entry(self.ventana)
-        self.entrada_precio.grid(row=2, column=4, padx=10, pady=(10,0))
-        
-        self.lb_cantidad = tk.Label(self.ventana, text="Cantidad:", bg="#E5E8E8", fg="#2C3E50")
-        self.lb_cantidad.grid(row=1, column=5, padx=10, pady=(10,0), sticky='e')  # Alineado a la derecha con respecto a la cédula
-        self.entrada_cantidad = tk.Entry(self.ventana, width=10)  # Se reduce el ancho del campo de cantidad
-        self.entrada_cantidad.grid(row=1, column=6, padx=10, pady=(10,0))
+        self.entrada_precio.grid(row=4, column=1, padx=10, pady=(10,0))
         
         self.lb_total = tk.Label(self.ventana, text="Total:", bg="#E5E8E8", fg="#2C3E50")
-        self.lb_total.grid(row=2, column=5, padx=10, pady=(10,0), sticky='e')  # Alineado a la derecha con respecto al precio
-        self.entrada_total = tk.Entry(self.ventana,width=10)
-        self.entrada_total.grid(row=2, column=6, padx=10, pady=(10,0))
+        self.lb_total.grid(row=3, column=2, padx=10, pady=(10,0))  # Alineado a la derecha con respecto al precio
+        self.entrada_total = tk.Entry(self.ventana)
+        self.entrada_total.grid(row=4, column=2, padx=10, pady=(10,0))
         
-        self.btn_vender = tk.Button(self.ventana, text="Vender", bg="#2C3E50", fg="white", font=("Arial", 12, "bold"))
-        self.btn_vender.grid(row=3, column=6, columnspan=2, pady=10, padx=10)
+        self.lb_cantidad = tk.Label(self.ventana, text="Cantidad:", bg="#E5E8E8", fg="#2C3E50")
+        self.lb_cantidad.grid(row=1, column=2, padx=10, pady=(10,0))  # Alineado a la derecha con respecto a la cédula
+        self.entrada_cantidad = tk.Entry(self.ventana)  # Se reduce el ancho del campo de cantidad
+        self.entrada_cantidad.grid(row=2, column=2, padx=10, pady=(10,0))
 
+        self.btn_vender = tk.Button(self.ventana, text="Vender", bg="#2C3E50", fg="white", font=("Arial", 12, "bold"))
+        self.btn_vender.grid(row=5, column=1, pady=10, padx=10)
+
+        self.lb_clientes = tk.Label(self.ventana, text="Clientes:")
+        self.lb_clientes.grid(row=6, column=0)
+        
+        self.lb_productos = tk.Label(self.ventana, text="Productos:")
+        self.lb_productos.grid(row=6, column=1, sticky='w', padx=10)
+        
         self.generar_tabla()
+        self.generar_tabla_cliente()
         
     def generar_tabla(self):
         columnas = ("ID Libro", "Libro", "Stock", "Precio")
@@ -66,7 +73,7 @@ class V_Ventas:
         self.tabla_productos.heading("Libro", text="Libro")
         self.tabla_productos.heading("Stock", text="Stock")
         self.tabla_productos.heading("Precio", text="Precio")
-        self.tabla_productos.grid(row=4, column=1, columnspan=6, sticky='nsew', pady=(10, 20), padx=10)  # Ajuste de la tabla más arriba y un poco más abajo
+        self.tabla_productos.grid(row=7, column=1, columnspan=2, sticky='nsew', pady=(10, 20), padx=10)  # Ajuste de la tabla más arriba y un poco más abajo
 
         list_productos = listar_productos()
         
@@ -74,7 +81,20 @@ class V_Ventas:
             self.tabla_productos.insert("", tk.END, values=producto)
             
         self.tabla_productos.bind('<ButtonRelease-1>', self.evento_tabla) # Da evento a la tabla productos
-            
+    
+    def generar_tabla_cliente(self):
+        columnas = ("ID Cliente", "Cliente", "CI")
+        self.tabla_cliente = ttk.Treeview(self.ventana, columns=columnas, show='headings')
+        self.tabla_cliente.column("ID Cliente", width=30)
+        self.tabla_cliente.column("Cliente", width=100)
+        self.tabla_cliente.column("CI", width=60)
+        
+        self.tabla_cliente.heading("ID Cliente", text="ID Cliente")
+        self.tabla_cliente.heading("Cliente", text="Cliente")
+        self.tabla_cliente.heading("CI", text="CI")
+        self.tabla_cliente.grid(row=7, column=0, columnspan=1, sticky='nsew', pady=(10, 20), padx=10) 
+    
+
     def evento_tabla(self, event):
         self.tabla_productos = event.widget
         item = self.tabla_productos.identify('item', event.x, event.y)
