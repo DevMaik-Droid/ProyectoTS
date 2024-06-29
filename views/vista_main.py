@@ -57,7 +57,7 @@ class VentanaPrincipal:
 
         # Menú Ayuda
         ayuda_menu = tk.Menu(menu, tearoff=0)
-        ayuda_menu.add_command(label="Acerca de HR Software", command=self.mostrar_acerca_de)
+        ayuda_menu.add_command(label="Acerca de Dev Software", command=self.mostrar_acerca_de)
         menu.add_cascade(label="Ayuda", menu=ayuda_menu)
 
         # Menú Salir
@@ -134,7 +134,7 @@ class VentanaPrincipal:
         
 
     def mostrar_acerca_de(self):
-        messagebox.showinfo("Acerca de HR Software", "HR Software - Control de Recursos Humanos\nVersión 1.0\nDesarrollado por HR Soft\nhttps://www.hrsoft.com")
+        messagebox.showinfo("Acerca de Dev Software", "Dev Software - Venta de Libros\nVersión 1.0\nDesarrollado por Dev Soft\nhttps://www.Devsoft.com")
 
     def generar_reporte_empleados(self):
         pass
