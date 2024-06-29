@@ -47,7 +47,18 @@ def listar_usuarios():
         return usuarios
     except sqlite3.Error as e:
         messagebox.showerror("Error","ERROR EN CREAR AL USUARIO", e)
-        
+
+def listar_usuarios_p():
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "SELECT id, nombre, edad, ci, usuario FROM usuarios"
+        cursor.execute(sql)
+        usuarios = cursor.fetchall()
+        cerrar_conexion(conexion)
+        return usuarios
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN LISTAR AL USUARIO", e)
 
 def actualizar_usuario(usuario):
     try:

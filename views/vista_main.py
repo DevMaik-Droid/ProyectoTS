@@ -9,7 +9,9 @@ from controllers.producto_controller import Producto_Controller
 from controllers.ventas_controller import Ventas_Controller
 from controllers.user_controller import Usuario_Controller
 from services.Service_Producto import listar_productos
-from views.vista_gestionar_libros import V_GestionLibro
+from controllers.reportes import generar_reporte_pdf
+from services.Service_Usuario import listar_usuarios_p
+from services.Service_Venta import listar_ventas
 
 class VentanaPrincipal:
     def __init__(self, root, id_usuario):
@@ -47,9 +49,9 @@ class VentanaPrincipal:
 
         # Menú Reportes
         reportes_menu = tk.Menu(menu, tearoff=0)
-        reportes_menu.add_command(label="Generar Reporte de Usuarios", command=self.generar_reporte_empleados)
-        reportes_menu.add_command(label="Generar Reporte de Libros", command=self.generar_reporte_empleados)
-        reportes_menu.add_command(label="Generar Reporte de Ventas", command=self.generar_reporte_empleados)
+        reportes_menu.add_command(label="Generar Reporte de Usuarios", command=self.generar_reporte_usuarios)
+        reportes_menu.add_command(label="Generar Reporte de Libros", command=self.generar_reporte_libros)
+        reportes_menu.add_command(label="Generar Reporte de Ventas", command=self.generar_reporte_ventas)
         menu.add_cascade(label="Reportes", menu=reportes_menu)
 
         # Menú Ventas
@@ -137,13 +139,26 @@ class VentanaPrincipal:
         ventana_empleados = Toplevel(self.root)
         
         
-        
-
     def mostrar_acerca_de(self):
         messagebox.showinfo("Acerca de Dev Software", "Dev Software - Venta de Libros\nVersión 1.0\nDesarrollado por Dev Soft\nhttps://www.Devsoft.com")
 
-    def generar_reporte_empleados(self):
-        pass
+    def generar_reporte_usuarios(self):
+        encabezado = [["ID", "NOMBRE", "EDAD", "CI", "USUARIO"]]
+        lista = listar_usuarios_p()
+        nombre_archivo = "reporte_usuarios"
+        generar_reporte_pdf(lista,encabezado,nombre_archivo)
+    
+    def generar_reporte_libros(self):
+        encabezado = [["ID", "NOMBRE", "STOCK", "PRECIO"]]
+        lista = listar_productos()
+        nombre_archivo = "reporte_productos"
+        generar_reporte_pdf(lista,encabezado,nombre_archivo)
+    
+    def generar_reporte_ventas(self):
+        encabezado = [["LIBRO", "USUARIO", "CLIENTE","PRECIO"]]
+        lista = listar_ventas()
+        nombre_archivo = "reporte_ventas"
+        generar_reporte_pdf(lista,encabezado,nombre_archivo)
 
     def salir(self):
         self.root.quit()
