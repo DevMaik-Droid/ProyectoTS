@@ -41,10 +41,10 @@ class V_GestionUsuarios:
         self.entrada_nombre = tk.Entry(self.frame,font=("Arial", 10, "bold"))
         self.entrada_nombre.grid(row=2,column=0,columnspan=2,sticky="nesw",padx=(20,20))
         
-        self.lb_stock = tk.Label(self.frame, text="Edad: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
-        self.lb_stock.grid(row=3,column=0)
-        self.entrada_stock = tk.Entry(self.frame,font=("Arial", 10, "bold"))
-        self.entrada_stock.grid(row=4,column=0,padx=(20,20))
+        self.lb_edad = tk.Label(self.frame, text="Edad: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
+        self.lb_edad.grid(row=3,column=0)
+        self.entrada_edad = tk.Entry(self.frame,font=("Arial", 10, "bold"))
+        self.entrada_edad.grid(row=4,column=0,padx=(20,20))
     
         self.lb_ci = tk.Label(self.frame, text="CI: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
         self.lb_ci.grid(row=3,column=1)
@@ -58,12 +58,12 @@ class V_GestionUsuarios:
         
         self.lb_password = tk.Label(self.frame, text="Password: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
         self.lb_password.grid(row=5,column=1)
-        self.entrada_password = tk.Entry(self.frame,font=("Arial", 10, "bold"))
+        self.entrada_password = tk.Entry(self.frame,font=("Arial", 10, "bold"), show="*")
         self.entrada_password.grid(row=6,column=1,padx=(0,20))
         
         self.lb_confirmar = tk.Label(self.frame, text="Confirmar: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
         self.lb_confirmar.grid(row=7,column=1)
-        self.entrada_confirmar = tk.Entry(self.frame,font=("Arial", 10, "bold"))
+        self.entrada_confirmar = tk.Entry(self.frame,font=("Arial", 10, "bold"), show="*")
         self.entrada_confirmar.grid(row=8,column=1,padx=(0,20))
         
         # Botón
@@ -88,9 +88,32 @@ class V_GestionUsuarios:
         self.tabla_usuarios.heading("CI", text="CI")
         self.tabla_usuarios.grid(row=10, column=0, columnspan=2, sticky='nsew', pady=(10, 20), padx=10)  
 
-        list_usuarios = listar_usuarios()
+        self.list_usuarios = listar_usuarios()
         
-        for producto in list_usuarios:
-            self.tabla_usuarios.insert("", tk.END, values=producto)
+        for usuario in self.list_usuarios:
+            self.tabla_usuarios.insert("", tk.END, values=usuario)
             
-        self.tabla_usuarios.bind('<ButtonRelease-1>', self.evento_tabla) 
+        self.tabla_usuarios.bind('<ButtonRelease-1>', self.evento_tabla)
+    
+    def evento_tabla(self, event):
+        self.tabla_productos = event.widget
+        item = self.tabla_productos.identify('item', event.x, event.y)
+        seleccion = self.tabla_productos.item(item, "values")
+        
+        self.id_usuario = seleccion[0]
+        
+        for lista in self.list_usuarios:
+            if lista[0] == int(self.id_usuario):
+                self.entrada_nombre.delete(0, tk.END)
+                self.entrada_nombre.insert(0, lista[1])
+                self.entrada_edad.delete(0, tk.END)
+                self.entrada_edad.insert(0, lista[2])
+                self.entrada_ci.delete(0, tk.END)
+                self.entrada_ci.insert(0, lista[3])
+                self.entrada_usuario.delete(0, tk.END)
+                self.entrada_usuario.insert(0, lista[4])
+                self.entrada_password.delete(0, tk.END)
+                self.entrada_password.insert(0, lista[5])
+                self.entrada_confirmar.delete(0, tk.END)
+                self.entrada_confirmar.insert(0, lista[5])
+                break

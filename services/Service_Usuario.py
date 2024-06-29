@@ -47,3 +47,28 @@ def listar_usuarios():
         return usuarios
     except sqlite3.Error as e:
         messagebox.showerror("Error","ERROR EN CREAR AL USUARIO", e)
+        
+
+def actualizar_usuario(usuario):
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "UPDATE usuarios SET nombre=?, edad=?, ci=?, usuario=?, password=? WHERE id=?"
+        cursor.execute(sql,(usuario.get_nombre(),usuario.get_edad(),usuario.get_ci(),usuario.get_usuario(),usuario.get_password(),usuario.get_id()))
+        conexion.commit()
+        cerrar_conexion(conexion)
+        messagebox.showinfo("USUARIOS","USUARIO ACTUALIZADO")
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN ACTUALIZAR AL USUARIO", e)
+        
+def eliminar_usuario(id_usuario):
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "DELETE FROM usuarios WHERE id=?"
+        cursor.execute(sql,(id_usuario))
+        conexion.commit()
+        cerrar_conexion(conexion)
+        messagebox.showinfo("USUARIOS","USUARIO ELIMINADO")
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN ELIMINAR AL USUARIO", e)
