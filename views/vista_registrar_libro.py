@@ -6,24 +6,31 @@ class V_RegistrarLibro:
         self.ventana = ventana
         self.ventana.title("Registrar Libro")
         self.ventana.geometry("400x300")
+        self.ventana.configure(bg="#FFECB3")  # Fondo naranja claro
         self.init_components()
         
-    
     def init_components(self):
-        self.lb_nombre = tk.Label(self.ventana, text="Nombre: ")
-        self.lb_nombre.pack()
-        self.entrada_nombre = tk.Entry(self.ventana)
-        self.entrada_nombre.pack()
+        # Frame para centrar el contenido
+        self.frame = tk.Frame(self.ventana, bg="#FFECB3")
+        self.frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         
-        self.lb_stock = tk.Label(self.ventana, text="Stock: ")
-        self.lb_stock.pack()
-        self.entrada_stock = tk.Entry(self.ventana)
-        self.entrada_stock.pack()
+        # Etiquetas y widgets de entrada
+        self.lb_nombre = tk.Label(self.frame, text="Nombre: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
+        self.lb_nombre.pack(pady=5)
+        self.entrada_nombre = tk.Entry(self.frame)
+        self.entrada_nombre.pack(pady=5)
+        
+        self.lb_stock = tk.Label(self.frame, text="Stock: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
+        self.lb_stock.pack(pady=5)
+        self.entrada_stock = tk.Entry(self.frame)
+        self.entrada_stock.pack(pady=5)
     
-        self.lb_precio = tk.Label(self.ventana, text="Precio: ")
-        self.lb_precio.pack()
-        self.entrada_precio = tk.Entry(self.ventana)
-        self.entrada_precio.pack()
+        self.lb_precio = tk.Label(self.frame, text="Precio: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
+        self.lb_precio.pack(pady=5)
+        self.entrada_precio = tk.Entry(self.frame)
+        self.entrada_precio.pack(pady=5)
         
-        self.btn_registrar = tk.Button(self.ventana, text="Registrar")
-        self.btn_registrar.pack()
+        # Botón
+        self.btn_registrar = tk.Button(self.frame, text="Registrar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
+        self.btn_registrar.pack(pady=20)
+        
