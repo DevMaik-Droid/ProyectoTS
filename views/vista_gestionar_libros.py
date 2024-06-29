@@ -1,6 +1,6 @@
 import tkinter as tk
 from  tkinter import ttk
-
+from PIL import Image, ImageTk
 from services.Service_Producto import listar_productos
 
 class V_GestionLibro:
@@ -9,35 +9,41 @@ class V_GestionLibro:
         self.ventana = ventana
         self.ventana.title("Registrar Libro")
         self.ventana.geometry("350x450")
-        self.ventana.configure(bg="#FFECB3")  # Fondo naranja claro
+        self.crear_fondo()
         self.init_components()
-        
+
+    def crear_fondo(self):
+        self.background_image = Image.open("images/gesLibro.png")
+        self.background_photo = ImageTk.PhotoImage(self.background_image)
+
+        self.background_label = tk.Label(self.ventana, image=self.background_photo)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)   
     def init_components(self):
         # Título centrado
-        self.lb_titulo = tk.Label(self.ventana, text="Gestion de Libros", fg="#225e68", bg="#e6e6e6", font=("Arial", 20, "bold"))
+        self.lb_titulo = tk.Label(self.ventana, text="Gestion de Libros", bg="#1a1612", fg="#c6c4c2", font=("Arial", 20, "bold"))
         self.lb_titulo.grid(row=0, column=0, pady=(20, 10), columnspan=2,sticky="nesw")
 
         # Etiquetas y widgets de entrada
-        self.lb_nombre = tk.Label(self.ventana, text="Nombre: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
+        self.lb_nombre = tk.Label(self.ventana, text="Nombre: ", bg="#1a1612", fg="#c6c4c2", font=("Arial", 12, "bold"))
         self.lb_nombre.grid(row=1, column=0,padx=(50,20))
         self.entrada_nombre = ttk.Entry(self.ventana)
         self.entrada_nombre.grid(row=2, column=0,padx=(50,20))
         
-        self.lb_stock = tk.Label(self.ventana, text="Stock: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
+        self.lb_stock = tk.Label(self.ventana, text="Stock: ", bg="#1a1612", fg="#c6c4c2", font=("Arial", 12, "bold"))
         self.lb_stock.grid(row=1, column=1)
         self.entrada_stock = ttk.Entry(self.ventana)
         self.entrada_stock.grid(row=2, column=1)
     
-        self.lb_precio = tk.Label(self.ventana, text="Precio: ", bg="#FFECB3", fg="#D35400", font=("Arial", 12, "bold"))
+        self.lb_precio = tk.Label(self.ventana, text="Precio: ", bg="#1a1612", fg="#c6c4c2", font=("Arial", 12, "bold"))
         self.lb_precio.grid(row=3, column=0,padx=(50,20))
         self.entrada_precio = ttk.Entry(self.ventana)
         self.entrada_precio.grid(row=4, column=0,padx=(50,20))
         
         # Botón
-        self.btn_modificar = tk.Button(self.ventana, text="Modificar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
+        self.btn_modificar = tk.Button(self.ventana, text="Modificar", bg="#155037", fg="#c6c4c2", font=("Arial", 12, "bold"))
         self.btn_modificar.grid(row=5, column=0,padx=(70,0),pady=(10,10))
          
-        self.btn_eliminar = tk.Button(self.ventana, text="Eliminar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
+        self.btn_eliminar = tk.Button(self.ventana, text="Eliminar", bg="#811b20", fg="#c6c4c2", font=("Arial", 12, "bold"))
         self.btn_eliminar.grid(row=5, column=1,pady=(10,10))
         
         self.crear_tabla_productos()
