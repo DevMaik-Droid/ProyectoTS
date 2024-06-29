@@ -9,11 +9,11 @@ from views.vista_registrar_libro import V_RegistrarLibro
 from services.Service_Producto import listar_productos
 
 class VentanaPrincipal:
-    def __init__(self, root):
+    def __init__(self, root, id_usuario):
         self.root = root
         self.root.title("Software - Control de Venta de Libros")
         self.root.geometry("800x600")
-
+        self.id_usuario = id_usuario
         self.crear_fondo()
         self.crear_menu()
         self.crear_panel_principal()
@@ -117,7 +117,7 @@ class VentanaPrincipal:
 
     def abrir_ventana_ventas(self):
         v_ventas = Toplevel(self.root)
-        Ventas_Controller(v_ventas)
+        Ventas_Controller(v_ventas, self.id_usuario)
         
     def ventana_registrar_libro(self):
         ventana_libros = Toplevel(self.root)

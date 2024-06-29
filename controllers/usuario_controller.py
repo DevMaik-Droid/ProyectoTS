@@ -26,8 +26,8 @@ class usuario_controller(Vista_Login):
     def iniciar_sesion(self):
         usuario = self.entrada_usuario.get()
         password = self.entrada_password.get()
-        
-        if login(usuario, password):
+        self.id_usuario, iniciar_sesion = login(usuario, password)
+        if iniciar_sesion:
             messagebox.showinfo("FFF", "inicio correcto")
             self.abrir_ventana()
         else:
@@ -37,7 +37,7 @@ class usuario_controller(Vista_Login):
     def abrir_ventana(self):
         self.ventana.destroy()
         nueva_ventana = tk.Tk()
-        ventana_n = VentanaPrincipal(nueva_ventana)
+        ventana_n = VentanaPrincipal(nueva_ventana, self.id_usuario)
         nueva_ventana.mainloop()
         
         

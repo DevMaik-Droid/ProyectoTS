@@ -42,6 +42,12 @@ class V_Ventas:
         self.entrada_cantidad = tk.Entry(self.ventana)
         self.entrada_cantidad.grid(row=4, column=3)
         
+        self.lb_total = tk.Label(self.ventana, text="Total")
+        self.lb_total.grid(row=3, column=4)
+        self.entrada_total = tk.Entry(self.ventana)
+        self.entrada_total.grid(row=4, column=4)
+        
+        
         self.btn_vender = tk.Button(self.ventana, text="Vender")
         self.btn_vender.grid(row=5, column=2)
         self.generar_tabla()
@@ -77,9 +83,7 @@ class V_Ventas:
         self.entrada_nombre_producto.delete(0, tk.END)
         self.entrada_nombre_producto.insert(0, item_values[1])
         
-        self.entrada_cantidad.delete(0, tk.END)
-        self.entrada_cantidad.insert(0, item_values[2])
-        
         self.entrada_precio.delete(0, tk.END)
         self.entrada_precio.insert(0, item_values[0])
+        
         self.id = item_values[0]

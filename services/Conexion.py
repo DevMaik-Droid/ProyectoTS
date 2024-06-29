@@ -11,7 +11,7 @@ def conectar():
         cursor.execute(sql)
     
     cursor.close()
-    
+
     return conexion
 
 def crear_tablas():

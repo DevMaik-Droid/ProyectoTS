@@ -1,12 +1,14 @@
 class Cliente:
     
-    def __init__(self):
-        pass
+    
     
     def __init__(self, nombre, ci):
         self.nombre = nombre
         self.ci = ci
         self.id = None
+    
+    def __init__(self):
+        pass
     
     def get_nombre(self):
         return self.nombre

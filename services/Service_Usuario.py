@@ -25,9 +25,11 @@ def login(usuario, password):
         cursor.execute(sql,(usuario, password))
         resultado = cursor.fetchone()
         
+        id_usuario = resultado[0]
+        
         cerrar_conexion(conexion)
 
-        return resultado is not None
+        return resultado is not None, id_usuario
     
     except sqlite3.Error as e: 
         print("Error en iniciar sesion: " + e)
