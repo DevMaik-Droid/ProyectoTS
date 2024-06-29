@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 from services.Service_Producto import listar_productos
-
+#amiguito
 class V_Ventas:
     
     def __init__(self, ventana):
