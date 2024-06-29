@@ -2,13 +2,13 @@ import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 from services.Service_Producto import listar_productos
-#amiguito
+
 class V_Ventas:
     
     def __init__(self, ventana):
         self.ventana = ventana
         self.ventana.title("Registro de Venta")
-        self.ventana.geometry("750x500") 
+        self.ventana.geometry("680x520") 
         self.crear_fondo()
         self.init_components()
 
