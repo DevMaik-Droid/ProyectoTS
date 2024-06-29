@@ -17,11 +17,11 @@ def generar_reporte_pdf(data_list, encabezado, nombre_archivo):
                                     leftMargin=50, rightMargin=50, topMargin=100, bottomMargin=70)
 
             # Definir el logo de la empresa
-            logo_path = "images/OIG3.jpg"
-            logo = Image(logo_path, width=100, height=50)
+            logo_path = "images/logo_reportes.jpg"
+            logo = Image(logo_path, width=100, height=80)
 
             # Definir el contenido del pie de página
-            contact_info = Paragraph("<br/>Teléfono: 123-456-7890<br/>Correo electrónico: info@empresa.com",
+            contact_info = Paragraph("<br/>Teléfono: 730-xxx-78 <br/>Correo electrónico: miguel.040.net@gmail.com",
                                     style=getSampleStyleSheet()["Normal"])
 
             # Función para agregar encabezado y pie de página en cada página del PDF
@@ -62,4 +62,4 @@ def generar_reporte_pdf(data_list, encabezado, nombre_archivo):
         except Exception as e:
             messagebox.showerror("Error", f"No se pudo generar el reporte: {e}")
     else:
-        messagebox.showwarning("Advertencia", "No hay empleados para generar el reporte.")
+        messagebox.showwarning("Advertencia", "No hay datos para generar el reporte.")
