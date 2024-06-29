@@ -35,3 +35,51 @@ def login(usuario, password):
         print("Error en iniciar sesion: " + e)
     
     return False
+
+def listar_usuarios():
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "SELECT * FROM usuarios"
+        cursor.execute(sql)
+        usuarios = cursor.fetchall()
+        cerrar_conexion(conexion)
+        return usuarios
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN CREAR AL USUARIO", e)
+
+def listar_usuarios_p():
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "SELECT id, nombre, edad, ci, usuario FROM usuarios"
+        cursor.execute(sql)
+        usuarios = cursor.fetchall()
+        cerrar_conexion(conexion)
+        return usuarios
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN LISTAR AL USUARIO", e)
+
+def actualizar_usuario(usuario):
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "UPDATE usuarios SET nombre=?, edad=?, ci=?, usuario=?, password=? WHERE id=?"
+        cursor.execute(sql,(usuario.get_nombre(),usuario.get_edad(),usuario.get_ci(),usuario.get_usuario(),usuario.get_password(),usuario.get_id()))
+        conexion.commit()
+        cerrar_conexion(conexion)
+        messagebox.showinfo("USUARIOS","USUARIO ACTUALIZADO")
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN ACTUALIZAR AL USUARIO", e)
+        
+def eliminar_usuario(id_usuario):
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "DELETE FROM usuarios WHERE id=?"
+        cursor.execute(sql,(id_usuario))
+        conexion.commit()
+        cerrar_conexion(conexion)
+        messagebox.showinfo("USUARIOS","USUARIO ELIMINADO")
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN ELIMINAR AL USUARIO", e)

@@ -11,17 +11,6 @@ class usuario_controller(Vista_Login):
         super().__init__(ventana)
         self.btn_ingresar.config(command=self.iniciar_sesion)
 
-
-    def crear_empleado(self):
-        user = Usuario()
-        user.set_nombre("Pedro Perez")
-        user.set_edad(18)
-        user.set_ci(111111)
-        user.set_usuario("dev1")
-        user.set_password("dev1")
-        
-        print(user.get_nombre())
-        agregar_usuario(user)
         
     def iniciar_sesion(self):
         usuario = self.entrada_usuario.get()

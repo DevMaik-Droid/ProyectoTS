@@ -33,3 +33,9 @@ class Usuario:
     
     def set_password(self, password):
         self.password = password
+        
+    def set_id(self, id):
+        self.id = id
+    
+    def get_id(self):
+        return self.id
