@@ -3,6 +3,7 @@ from tkinter import messagebox, Toplevel
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+from controllers.gestion_user_controller import GestionUsuarios
 from controllers.producto_controller import Producto_Controller
 from controllers.ventas_controller import Ventas_Controller
 from controllers.user_controller import Usuario_Controller
@@ -38,7 +39,7 @@ class VentanaPrincipal:
 
         # Menú Gestionar
         empleados_menu = tk.Menu(menu, tearoff=0)
-        empleados_menu.add_command(label="Gestionar Usuario")
+        empleados_menu.add_command(label="Gestionar Usuario", command=self.ventana_gestion_usuario)
         empleados_menu.add_command(label="Gestionar Libro")
         menu.add_cascade(label="Gestionar", menu=empleados_menu)
 
@@ -121,6 +122,10 @@ class VentanaPrincipal:
     def ventana_registrar_libro(self):
         ventana_libros = Toplevel(self.root)
         Producto_Controller(ventana_libros)
+    
+    def ventana_gestion_usuario(self):
+        ventana_empleados = Toplevel(self.root)
+        GestionUsuarios(ventana_empleados)
         
     def mostrar_ventana_empleados(self):
         ventana_empleados = Toplevel(self.root)

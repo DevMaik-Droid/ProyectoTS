@@ -1,6 +1,10 @@
 import tkinter as tk
+from tkinter import ttk
 from PIL import Image, ImageTk
-class V_RegistrarUsuario:
+
+from services.Service_Usuario import listar_usuarios
+
+class V_GestionUsuarios:
     
     def __init__(self, ventana):
         self.ventana = ventana
@@ -63,5 +67,30 @@ class V_RegistrarUsuario:
         self.entrada_confirmar.grid(row=8,column=1,padx=(0,20))
         
         # Botón
-        self.btn_registrar = tk.Button(self.frame, text="Registrar", bg="#225e68", fg="white", font=("Arial", 10, "bold"))
-        self.btn_registrar.grid(row=9,column=1,pady=(20,5))
+        self.btn_actualizar = tk.Button(self.frame, text="Actualizar", bg="#225e68", fg="white", font=("Arial", 10, "bold"))
+        self.btn_actualizar.grid(row=9,column=0,pady=(20,5))
+        
+        self.btn_eliminar = tk.Button(self.frame, text="Eliminar", bg="#225e68", fg="white", font=("Arial", 10, "bold"))
+        self.btn_eliminar.grid(row=9,column=1,pady=(20,5))
+        self.generar_tabla()
+
+    def generar_tabla(self):
+        columnas = ("ID", "Nombre", "Edad", "CI")
+        self.tabla_usuarios = ttk.Treeview(self.frame, columns=columnas, show='headings')
+        self.tabla_usuarios.column("ID", width=80)
+        self.tabla_usuarios.column("Nombre", width=200)
+        self.tabla_usuarios.column("Edad", width=80)
+        self.tabla_usuarios.column("CI", width=80)
+        
+        self.tabla_usuarios.heading("ID", text="ID")
+        self.tabla_usuarios.heading("Nombre", text="Nombres")
+        self.tabla_usuarios.heading("Edad", text="Edad")
+        self.tabla_usuarios.heading("CI", text="CI")
+        self.tabla_usuarios.grid(row=10, column=0, columnspan=2, sticky='nsew', pady=(10, 20), padx=10)  
+
+        list_usuarios = listar_usuarios()
+        
+        for producto in list_usuarios:
+            self.tabla_usuarios.insert("", tk.END, values=producto)
+            
+        self.tabla_usuarios.bind('<ButtonRelease-1>', self.evento_tabla) 

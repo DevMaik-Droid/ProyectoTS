@@ -35,3 +35,15 @@ def login(usuario, password):
         print("Error en iniciar sesion: " + e)
     
     return False
+
+def listar_usuarios():
+    try:
+        conexion = conectar()
+        cursor = conexion.cursor()
+        sql = "SELECT * FROM usuarios"
+        cursor.execute(sql)
+        usuarios = cursor.fetchall()
+        cerrar_conexion(conexion)
+        return usuarios
+    except sqlite3.Error as e:
+        messagebox.showerror("Error","ERROR EN CREAR AL USUARIO", e)
