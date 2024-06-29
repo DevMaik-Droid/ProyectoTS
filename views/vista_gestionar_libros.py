@@ -33,8 +33,8 @@ class V_GestionLibro:
         self.btn_modificar = tk.Button(self.ventana, text="Modificar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
         self.btn_modificar.grid(row=5, column=0)
         
-        self.btn_modificar = tk.Button(self.ventana, text="Modificar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
-        self.btn_modificar.grid(row=5, column=1)
+        self.btn_eliminar = tk.Button(self.ventana, text="Eliminar", bg="#D35400", fg="white", font=("Arial", 12, "bold"))
+        self.btn_eliminar.grid(row=5, column=1)
         
         self.crear_tabla_productos()
         
@@ -66,7 +66,8 @@ class V_GestionLibro:
         
         item_values = self.tabla_productos.item(item, "values")
         
-        self.id_producto = item_values[0]
+        self.id_libro = item_values[0]
+        print("id_libro: ", self.id_libro)
 
         self.entrada_nombre.delete(0, tk.END)
         self.entrada_nombre.insert(0, item_values[1])

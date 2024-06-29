@@ -3,6 +3,7 @@ from tkinter import messagebox, Toplevel
 from tkinter import ttk
 from PIL import Image, ImageTk
 
+from controllers.gestion_libros_controller import ControllerGestionLibros
 from controllers.gestion_user_controller import GestionUsuarios
 from controllers.producto_controller import Producto_Controller
 from controllers.ventas_controller import Ventas_Controller
@@ -118,7 +119,7 @@ class VentanaPrincipal:
 
     def abrir_gestion_libros(self):
         ventana_gestion_libros = Toplevel(self.root)
-        V_GestionLibro(ventana_gestion_libros)
+        ControllerGestionLibros(ventana_gestion_libros)
         
     def abrir_ventana_ventas(self):
         v_ventas = Toplevel(self.root)
