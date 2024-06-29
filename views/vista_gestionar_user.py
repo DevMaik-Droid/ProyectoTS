@@ -8,8 +8,8 @@ class V_GestionUsuarios:
     
     def __init__(self, ventana):
         self.ventana = ventana
-        self.ventana.title("Registrar Usuario")
-        self.ventana.geometry("600x400")
+        self.ventana.title("Gestion de Usuario")
+        self.ventana.geometry("750x565")
         self.crear_fondo()
         self.init_components()
 
@@ -28,12 +28,12 @@ class V_GestionUsuarios:
         self.ventana.grid_columnconfigure(2, weight=1)
 
         # Título centrado
-        self.lb_titulo = tk.Label(self.ventana, text="Registro de Usuario", fg="#225e68", bg="#e6e6e6", font=("Arial", 20, "bold"))
+        self.lb_titulo = tk.Label(self.ventana, text="Gestion de Usuario", fg="#225e68", bg="#e6e6e6", font=("Arial", 20, "bold"))
         self.lb_titulo.grid(row=0, column=1, pady=(20, 10), columnspan=3, sticky="w",padx=(200,0))
 
         # Frame para centrar el contenido
         self.frame = tk.Frame(self.ventana, bg="#e6e6e6")
-        self.frame.place(relx=0.6, rely=0.5, anchor=tk.CENTER)
+        self.frame.place(relx=0.65, rely=0.55, anchor=tk.CENTER)
         
         # Etiquetas y widgets de entrada
         self.lb_nombre = tk.Label(self.frame, text="Nombre: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
@@ -70,7 +70,7 @@ class V_GestionUsuarios:
         self.btn_actualizar = tk.Button(self.frame, text="Actualizar", bg="#225e68", fg="white", font=("Arial", 10, "bold"))
         self.btn_actualizar.grid(row=9,column=0,pady=(20,5))
         
-        self.btn_eliminar = tk.Button(self.frame, text="Eliminar", bg="#225e68", fg="white", font=("Arial", 10, "bold"))
+        self.btn_eliminar = tk.Button(self.frame, text="Eliminar", bg="#c60a2e", fg="white", font=("Arial", 10, "bold"))
         self.btn_eliminar.grid(row=9,column=1,pady=(20,5))
         self.generar_tabla()
 
