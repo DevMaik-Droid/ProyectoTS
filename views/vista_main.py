@@ -70,7 +70,7 @@ class VentanaPrincipal:
         self.root.config(menu=menu)
 
     def crear_panel_principal(self):
-        panel_principal = tk.Frame(self.root, bg='white')
+        panel_principal = tk.Frame(self.root, bg='#ecf791')
         panel_principal.place(relx=0.5, rely=0.5, anchor=tk.CENTER, relwidth=0.9, relheight=0.8)
 
         self.crear_paneles_informacion(panel_principal)
@@ -79,22 +79,22 @@ class VentanaPrincipal:
         
 
     def crear_paneles_informacion(self, parent):
-        panel_informacion = tk.Frame(parent, bg='lightgray')
+        panel_informacion = tk.Frame(parent, bg='#ecf791')
         panel_informacion.pack(fill=tk.X, pady=10)
 
-        total_usuarios = tk.Label(panel_informacion, text="Total de Usuarios: 500", bg='lightgreen', font=('Arial', 12), width=25)
+        total_usuarios = tk.Label(panel_informacion, text="Total de Usuarios: 500", bg='lightgreen', font=("Arial", 12, "bold"), width=25,height=5)
         total_usuarios.pack(side=tk.LEFT, padx=5, pady=5)
 
-        total_empleados = tk.Label(panel_informacion, text="Total de Empleados: 50", bg='lightcoral', font=('Arial', 12), width=25)
+        total_empleados = tk.Label(panel_informacion, text="Total de Empleados: 50", bg='lightcoral', font=("Arial", 12, "bold"), width=25,height=5)
         total_empleados.pack(side=tk.LEFT, padx=5, pady=5)
 
-        total_libros = tk.Label(panel_informacion, text="Total de Libros: 1000", bg='lightblue', font=('Arial', 12), width=25)
+        total_libros = tk.Label(panel_informacion, text="Total de Libros: 1000", bg='lightblue', font=("Arial", 12, "bold"), width=25,height=5)
         total_libros.pack(side=tk.LEFT, padx=5, pady=5)
 
 
     def crear_tabla_ventas(self, parent):
         frame_tabla = tk.Frame(parent)
-        frame_tabla.pack(fill=tk.BOTH, expand=True, pady=10)
+        frame_tabla.pack(fill=tk.BOTH, expand=True,padx=(20,20),pady=(50,20))
 
         columnas = ("ID Libro","Libro", "Stock", "Precio")
         self.tabla_ventas = ttk.Treeview(frame_tabla, columns=columnas, show='headings')
