@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-
+from PIL import Image, ImageTk
 from services.Service_Producto import listar_productos
 
 # Supongamos que tenemos una función para listar productos
@@ -12,14 +12,23 @@ class V_Ventas:
         self.ventana = ventana
         self.ventana.title("Registro de Venta")
         self.ventana.geometry("750x500")  # Se ha aumentado el ancho de la ventana
-        self.ventana.configure(bg="#E5E8E8")  # Fondo gris claro
+        self.crear_fondo()
         self.init_components()
 
+    def crear_fondo(self):
+    # Cargar la imagen de fondo
+        self.background_image = Image.open("images/fondo_ventas.jpg")
+        self.background_photo = ImageTk.PhotoImage(self.background_image)
+
+        # Crear una etiqueta para mostrar la imagen de fondo
+        self.background_label = tk.Label(self.ventana, image=self.background_photo)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
     def init_components(self):
-        self.lb_titulo = tk.Label(self.ventana, text="Registro de Venta", bg="#E5E8E8", fg="#2C3E50", font=("Arial", 20, "bold"))
+        self.lb_titulo = tk.Label(self.ventana, text="Registro de Venta", fg="#2C3E50", font=("Arial", 20, "bold"))
         self.lb_titulo.grid(row=0, column=1, pady=(20, 10))
 
-        self.lb_nombre_cliente = tk.Label(self.ventana, text="Cliente:", bg="#E5E8E8", fg="#2C3E50")
+        self.lb_nombre_cliente = tk.Label(self.ventana, text="Cliente:", fg="#2C3E50")
         self.lb_nombre_cliente.grid(row=1, column=0,padx=(10,0))
         self.entrada_nombre_cliente = tk.Entry(self.ventana)
         self.entrada_nombre_cliente.grid(row=2, column=0, padx=(10,0))
