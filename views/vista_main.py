@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 from controllers.producto_controller import Producto_Controller
 from controllers.ventas_controller import Ventas_Controller
-from views.vista_registrar_libro import V_RegistrarLibro
+from controllers.user_controller import Usuario_Controller
 from services.Service_Producto import listar_productos
 
 class VentanaPrincipal:
@@ -32,16 +32,15 @@ class VentanaPrincipal:
 
         # Menú Registrar 
         empleados_menu = tk.Menu(menu, tearoff=0)
-        empleados_menu.add_command(label="Registrar Usuario", command=self.abrir_subventana_agregar_empleado)
+        empleados_menu.add_command(label="Registrar Usuario", command=self.abrir_subventana_agregar_usuario)
         empleados_menu.add_command(label="Registrar Empleado", command=self.mostrar_ventana_empleados)
         empleados_menu.add_command(label="Registrar Libro", command=self.ventana_registrar_libro)
         menu.add_cascade(label="Registrar", menu=empleados_menu)
 
         # Menú Gestionar
         empleados_menu = tk.Menu(menu, tearoff=0)
-        empleados_menu.add_command(label="Gestionar Usuario", command=self.abrir_subventana_agregar_empleado)
-        empleados_menu.add_command(label="Gestionar Empleado", command=self.mostrar_ventana_empleados)
-        empleados_menu.add_command(label="Gestionar Libro", command=self.abrir_subventana_agregar_empleado)
+        empleados_menu.add_command(label="Gestionar Usuario")
+        empleados_menu.add_command(label="Gestionar Libro")
         menu.add_cascade(label="Gestionar", menu=empleados_menu)
 
         # Menú Reportes
@@ -112,8 +111,10 @@ class VentanaPrincipal:
         for producto in list_productos:
             self.tabla_ventas.insert("", tk.END, values=producto)
 
-    def abrir_subventana_agregar_empleado(self):
-        pass
+    def abrir_subventana_agregar_usuario(self):
+        ventana_usuario = Toplevel(self.root)
+        Usuario_Controller(ventana_usuario)
+        
 
     def abrir_ventana_ventas(self):
         v_ventas = Toplevel(self.root)

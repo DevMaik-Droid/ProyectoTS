@@ -15,3 +15,5 @@ class Producto_Controller(V_RegistrarLibro):
         producto.set_stock(int(self.entrada_stock.get()))
         agregar_producto(producto)
         self.ventana.destroy()
+        
+        
