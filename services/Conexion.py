@@ -48,10 +48,21 @@ def crear_tablas():
             id_usuario INTEGER,
             id_cliente INTEGER,
             precio_real REAL,
+            cantidad INTEGER,
             FOREIGN KEY (id_producto) REFERENCES productos(idp),
             FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
             FOREIGN KEY (id_cliente) REFERENCES clientes(idc)
         );
+        """,
+        """
+        CREATE TRIGGER IF NOT EXISTS actualizar_ventas
+        AFTER INSERT ON ventas
+        FOR EACH ROW
+        BEGIN
+            UPDATE productos
+            SET stock = stock - (SELECT cantidad FROM ventas WHERE idv = NEW.idv)
+            WHERE idp = NEW.id_producto;
+        END;
         """
     ]
 

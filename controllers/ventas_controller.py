@@ -10,27 +10,32 @@ class Ventas_Controller(V_Ventas):
         super().__init__(ventana)
         self.id_usuario = id_usuario
         self.btn_vender.config(command=self.registrar_venta)
-        
+        self.id_cliente = 0
     
     def registrar_venta(self):
-        cliente = Cliente()
-        cliente.set_nombre(self.entrada_nombre_cliente.get())
-        cliente.set_ci(self.entrada_ci_cliente.get())
-        agregar_cliente(cliente)
-        
-        lista_cliente = listar_clientes()
-        id_cliente = 0
-        for datos in lista_cliente:
-            if datos[2] == self.entrada_ci_cliente.get():
-                id_cliente = datos[0]
-                break
+        id_cliente = None
+        if int(self.id_cliente) > 0:
+            id_cliente = self.id_cliente 
+        else:
+            cliente = Cliente()
+            cliente.set_nombre(self.entrada_nombre_cliente.get())
+            cliente.set_ci(self.entrada_ci_cliente.get())
+            agregar_cliente(cliente)
             
-        if id_cliente > 0: 
+            lista_cliente = listar_clientes()
+            id_cliente = 0
+            for datos in lista_cliente:
+                if datos[2] == self.entrada_ci_cliente.get():
+                    id_cliente = datos[0]
+                    break
+
+        if id_cliente is not None: 
             venta = Venta()
             venta.set_id_producto(int(self.id_producto))
             venta.set_id_cliente(int(id_cliente))
             venta.set_id_usuario(int(self.id_usuario))
             venta.set_precio_real(float(self.entrada_total.get()))
+            venta.set_cantidad(int(self.entrada_cantidad.get()))
             agregar_venta(venta)
         
         

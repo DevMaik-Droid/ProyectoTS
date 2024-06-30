@@ -157,6 +157,8 @@ class VentanaPrincipal:
     def generar_reporte_ventas(self):
         encabezado = [["LIBRO", "USUARIO", "CLIENTE","PRECIO"]]
         lista = listar_ventas()
+        for d in lista:
+            print(d)
         nombre_archivo = "reporte_ventas"
         generar_reporte_pdf(lista,encabezado,nombre_archivo)
 
