@@ -54,12 +54,12 @@ class V_RegistrarUsuario:
         
         self.lb_password = tk.Label(self.frame, text="Password: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
         self.lb_password.grid(row=5,column=1)
-        self.entrada_password = tk.Entry(self.frame,font=("Arial", 10, "bold"))
+        self.entrada_password = tk.Entry(self.frame,font=("Arial", 10, "bold"), show="•")
         self.entrada_password.grid(row=6,column=1,padx=(0,20))
         
         self.lb_confirmar = tk.Label(self.frame, text="Confirmar: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
         self.lb_confirmar.grid(row=7,column=1)
-        self.entrada_confirmar = tk.Entry(self.frame,font=("Arial", 10, "bold"))
+        self.entrada_confirmar = tk.Entry(self.frame,font=("Arial", 10, "bold"), show="•")
         self.entrada_confirmar.grid(row=8,column=1,padx=(0,20))
         
         # Botón

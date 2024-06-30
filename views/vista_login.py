@@ -79,7 +79,7 @@ class Vista_Login:
         self.frame_transparente.create_window(350, 260, window=self.lb_password, anchor="center")
         
         # Entrada de contraseña
-        self.entrada_password = tk.Entry(self.frame_transparente, show="*", font=("Helvetica", 14),bg="#FFFFFF", fg="#000000")
+        self.entrada_password = tk.Entry(self.frame_transparente, show="•", font=("Helvetica", 14),bg="#FFFFFF", fg="#000000")
         self.frame_transparente.create_window(350, 300, window=self.entrada_password, anchor="center")
         
         # Botón de ingresar
