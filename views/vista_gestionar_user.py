@@ -33,7 +33,7 @@ class V_GestionUsuarios:
 
         # Frame para centrar el contenido
         self.frame = tk.Frame(self.ventana, bg="#e6e6e6")
-        self.frame.place(relx=0.65, rely=0.55, anchor=tk.CENTER)
+        self.frame.place(relx=0.68, rely=0.55, anchor=tk.CENTER)
         
         # Etiquetas y widgets de entrada
         self.lb_nombre = tk.Label(self.frame, text="Nombre: ", bg="#e6e6e6", fg="#225e68", font=("Arial", 10, "bold"))
