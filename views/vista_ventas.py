@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+from services.Service_Cliente import listar_clientes
 from services.Service_Producto import listar_productos
 
 class V_Ventas:
@@ -96,14 +97,22 @@ class V_Ventas:
         self.tabla_cliente.heading("ID Cliente", text="ID Cliente")
         self.tabla_cliente.heading("Cliente", text="Cliente")
         self.tabla_cliente.heading("CI", text="CI")
-        self.tabla_cliente.grid(row=7, column=0, columnspan=1, sticky='nsew', pady=(10, 20), padx=10) 
+        self.tabla_cliente.grid(row=7, column=0, columnspan=1, sticky='nsew', pady=(10, 20), padx=10)
+        
+        list_clientes = listar_clientes()
+        
+        for cliente in list_clientes:
+            self.tabla_cliente.insert("", tk.END, values=cliente)
+            
+        self.tabla_cliente.bind('<ButtonRelease-1>', self.evento_tabla1) 
     
 
     def evento_tabla(self, event):
         self.tabla_productos = event.widget
         item = self.tabla_productos.identify('item', event.x, event.y)
-        
         item_values = self.tabla_productos.item(item, "values")
+        
+        
         self.id_producto = item_values[0]
         
         self.entrada_nombre_producto.delete(0, tk.END)
@@ -111,12 +120,15 @@ class V_Ventas:
         
         self.entrada_precio.delete(0, tk.END)
         self.entrada_precio.insert(0, item_values[3])
+
+    def evento_tabla1(self, event):
+        self.tabla_cliente = event.widget
+        item = self.tabla_cliente.identify('item', event.x, event.y)
+        item_values = self.tabla_cliente.item(item, "values")
         
-        """
-        # Supongamos que calculamos el total como precio * cantidad
-        if self.entrada_cantidad.get():
-            total = float(self.entrada_precio.get()) * float(self.entrada_cantidad.get())
-            self.entrada_total.delete(0, tk.END)
-            self.entrada_total.insert(0, total)
-        else:
-            self.entrada_total.delete(0, tk.END)"""
+        self.id_cliente = item_values[0]
+        self.entrada_nombre_cliente.delete(0, tk.END)
+        self.entrada_nombre_cliente.insert(0, item_values[1])
+        
+        self.entrada_ci_cliente.delete(0, tk.END)
+        self.entrada_ci_cliente.insert(0, item_values[2])

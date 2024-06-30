@@ -8,8 +8,8 @@ def agregar_venta(venta):
     try:
         conexion = conectar()
         cursor = conexion.cursor()
-        sql = "INSERT INTO ventas VALUES (?,?,?,?,?)"
-        cursor.execute(sql,(None,venta.get_id_producto(),venta.get_id_usuario(),venta.get_id_cliente(),venta.get_precio_real()))
+        sql = "INSERT INTO ventas VALUES (?,?,?,?,?,?)"
+        cursor.execute(sql,(None,venta.get_id_producto(),venta.get_id_usuario(),venta.get_id_cliente(),venta.get_precio_real(), venta.get_cantidad()))
         conexion.commit()
         cerrar_conexion(conexion)
         messagebox.showinfo("CLIENTE","Venta CREADa")

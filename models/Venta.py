@@ -1,14 +1,6 @@
 class Venta:
     
-    
-    
-    def __init__(self, id_cliente, id_usuario, id_producto, id_precio_real):
-        self.id_cliente = id_cliente
-        self.id_usuario = id_usuario
-        self.id_producto = id_producto
-        self.id_precio_real = id_precio_real
-        self.idc = None
-        
+
     def __init__(self):
         pass
     
@@ -40,3 +32,9 @@ class Venta:
     
     def set_idc(self, idc):
         self.idc = idc
+        
+    def get_cantidad(self):
+        return self.cantidad
+    
+    def set_cantidad(self, cantidad):
+        self.cantidad = cantidad
