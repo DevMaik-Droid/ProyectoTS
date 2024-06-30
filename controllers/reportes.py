@@ -5,9 +5,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 from tkinter import messagebox
 
-
-
-def generar_reporte_pdf(data_list, encabezado, nombre_archivo):
+def generar_reporte_pdf(data_list, encabezado, nombre_archivo, titulo_reporte):
     lista = data_list
     if lista:
         try:
@@ -23,19 +21,31 @@ def generar_reporte_pdf(data_list, encabezado, nombre_archivo):
             # Definir el contenido del pie de página
             contact_info = Paragraph("<br/>Teléfono: 730-xxx-78 <br/>Correo electrónico: miguel.040.net@gmail.com",
                                     style=getSampleStyleSheet()["Normal"])
+            
+            # Crear el título del reporte
+            styles = getSampleStyleSheet()
+            titulo = Paragraph(titulo_reporte, styles['Title'])
+
 
             # Función para agregar encabezado y pie de página en cada página del PDF
             def encabezado_y_pie(canvas, doc):
                 # Añadir el logo al encabezado
                 canvas.saveState()
                 logo.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - logo.drawHeight)
+                
+                # Añadir el título al encabezado
+                titulo.wrap(doc.width, doc.topMargin)
+                titulo.drawOn(canvas, doc.leftMargin, doc.height + doc.topMargin - 60)
+
                 # Línea separadora entre el encabezado y el cuerpo
                 canvas.setStrokeColor(colors.black)
                 canvas.setLineWidth(1)
                 canvas.line(doc.leftMargin, doc.height + doc.topMargin - logo.drawHeight - 5, doc.width + doc.leftMargin, doc.height + doc.topMargin - logo.drawHeight - 5)
+                
                 # Añadir información de contacto al pie de página
                 contact_info.wrap(doc.width, doc.bottomMargin)
                 contact_info.drawOn(canvas, doc.leftMargin, doc.bottomMargin - 20)
+                
                 # Línea separadora entre el cuerpo y el pie de página
                 canvas.line(doc.leftMargin, doc.bottomMargin + 15, doc.width + doc.leftMargin, doc.bottomMargin + 15)
                 canvas.restoreState()
@@ -55,8 +65,8 @@ def generar_reporte_pdf(data_list, encabezado, nombre_archivo):
                                     ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
                                     ('GRID', (0, 0), (-1, -1), 1, colors.black)]))  # Agregar líneas de separación
 
-            # Generar el PDF con encabezado y pie de página en cada página
-            doc.build([Spacer(1, inch), table], onFirstPage=encabezado_y_pie, onLaterPages=encabezado_y_pie)
+            # Generar el PDF con encabezado, leyenda y pie de página en cada página
+            doc.build([Spacer(0.2, inch), table], onFirstPage=encabezado_y_pie, onLaterPages=encabezado_y_pie)
 
             messagebox.showinfo("Éxito", f"Reporte generado correctamente: {pdf_filename}")
         except Exception as e:

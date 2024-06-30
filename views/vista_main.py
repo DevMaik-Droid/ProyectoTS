@@ -146,21 +146,22 @@ class VentanaPrincipal:
         encabezado = [["ID", "NOMBRE", "EDAD", "CI", "USUARIO"]]
         lista = listar_usuarios_p()
         nombre_archivo = "reporte_usuarios"
-        generar_reporte_pdf(lista,encabezado,nombre_archivo)
+        leyenda = "REPORTE USUARIOS"
+        generar_reporte_pdf(lista,encabezado,nombre_archivo, leyenda)
     
     def generar_reporte_libros(self):
         encabezado = [["ID", "NOMBRE", "STOCK", "PRECIO"]]
         lista = listar_productos()
         nombre_archivo = "reporte_productos"
-        generar_reporte_pdf(lista,encabezado,nombre_archivo)
+        leyenda = "REPORTE LIBROS"
+        generar_reporte_pdf(lista,encabezado,nombre_archivo, leyenda)
     
     def generar_reporte_ventas(self):
         encabezado = [["LIBRO", "USUARIO", "CLIENTE","PRECIO"]]
         lista = listar_ventas()
-        for d in lista:
-            print(d)
         nombre_archivo = "reporte_ventas"
-        generar_reporte_pdf(lista,encabezado,nombre_archivo)
+        leyenda = "REPORTE VENTAS"
+        generar_reporte_pdf(lista,encabezado,nombre_archivo, leyenda)
 
     def salir(self):
         self.root.quit()
